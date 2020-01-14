@@ -5,6 +5,7 @@ import com.example.kafkaApplication.services.KafkaService;
 import com.example.kafkaApplication.services.read.JsonRead;
 import com.example.kafkaApplication.services.read.XMLRead;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,9 +41,11 @@ public class KafkaServiceImpl implements KafkaService {
         List<Employee> employees = jsonRead.JsonReadFunction();
         System.out.println(employees);
 
+        for(int i=0;i<100;i++)
+            kafkaTemplate.send(topic,employees.get(i));
+
 
         return "Published Successfully";
-
 
     }
 
