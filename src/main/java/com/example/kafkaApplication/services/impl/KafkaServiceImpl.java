@@ -32,9 +32,15 @@ public class KafkaServiceImpl implements KafkaService {
 
     }
 
-    @KafkaListener(topics = "kafka",groupId = "group_id")
+    @KafkaListener(topics = "kafkaListen",groupId = "group_id")
     public void consume(String message){
         System.out.println("Consumed message "+message);
+    }
+
+    @KafkaListener(topics=topic,groupId = "group_id",containerFactory = "employeeKafkaListenerContainerFactory")
+    public void consume(Employee employee){
+        //add to postgre and mongo
+        System.out.println(employee.toString());
     }
 
 }
