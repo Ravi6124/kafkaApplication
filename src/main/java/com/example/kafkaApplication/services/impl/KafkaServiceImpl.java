@@ -2,6 +2,7 @@ package com.example.kafkaApplication.services.impl;
 
 import com.example.kafkaApplication.entity.Employee;
 import com.example.kafkaApplication.services.KafkaService;
+import com.example.kafkaApplication.services.read.JsonRead;
 import com.example.kafkaApplication.services.read.XMLRead;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -30,6 +31,19 @@ public class KafkaServiceImpl implements KafkaService {
         return  "Published successfully";
 
         
+    }
+
+    @Override
+    public String postJson(){
+        JsonRead jsonRead = new JsonRead();
+
+        List<Employee> employees = jsonRead.JsonReadFunction();
+        System.out.println(employees);
+
+
+        return "Published Successfully";
+
+
     }
 
 }

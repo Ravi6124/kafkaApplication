@@ -21,4 +21,9 @@ public class KafkaController {
         return kafkaService.post(message);
     }
 
+    @GetMapping("/jsonPublish")
+    public String postJson(){
+        return kafkaService.postJson();
+    }
+
 }
