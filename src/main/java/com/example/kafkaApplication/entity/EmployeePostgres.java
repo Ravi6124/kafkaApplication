@@ -1,19 +1,25 @@
 package com.example.kafkaApplication.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 import java.util.Date;
-
-
-public class Employee {
+@Entity
+@Table(name="employee")
+public class EmployeePostgres {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int employeeId;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
     private double experience;
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -49,8 +55,9 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
+        return "EmployeePostgres{" +
+                "employeeId=" + employeeId +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", experience=" + experience +

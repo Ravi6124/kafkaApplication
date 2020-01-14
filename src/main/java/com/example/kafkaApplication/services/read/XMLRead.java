@@ -22,11 +22,12 @@ import java.util.List;
 import java.util.*;
 
 public class XMLRead {
-        private List<Employee> arrayList = new ArrayList<Employee>();
+        private Employee employee = new Employee();
         private DocumentBuilderFactory dbFactory;
         private Document document;
         private DocumentBuilder dBuilder;
         private Element root;
+        private static int count=0;
 
         public XMLRead() {
             this.dbFactory = DocumentBuilderFactory.newInstance();
@@ -40,7 +41,7 @@ public class XMLRead {
             document.appendChild(root);
         }
 
-        public List<Employee> read() {
+        public Employee read() {
             String filePath = "/Users/ravikumarjha/Desktop/kafkaApplication/src/main/resources/employee.xml" ;           File xmlFile = new File(filePath);
 
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -52,13 +53,16 @@ public class XMLRead {
 
                 NodeList nodeList = document.getElementsByTagName("employee");
                 System.out.println(nodeList.item(0));
-                for (int j = 0; j < nodeList.getLength(); j++) {
-                    arrayList.add(getEmployee(nodeList.item(j)));
-                }
+//                for (int j = 0; j < nodeList.getLength(); j++) {
+//                    arrayList.add(getEmployee(nodeList.item(j)));
+                employee = getEmployee(nodeList.item(count++));
+                //return getEmployee(nodeList.item(count++));
+//                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return arrayList;
+            return employee;
         }
 
         private static Employee getEmployee(Node node) {
