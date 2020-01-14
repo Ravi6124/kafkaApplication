@@ -16,7 +16,7 @@ import java.util.List;
 public class CSVRead {
     @Autowired
     private KafkaService kafkaService;
-    //private List<Employee> employee = new ArrayList<Employee>();
+    private List<Employee> employee = new ArrayList<Employee>();
     private static int count=0;
     public Employee read() {
         //todo : move this file name to property file
