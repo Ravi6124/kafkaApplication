@@ -31,7 +31,11 @@ public class KafkaServiceImpl implements KafkaService {
         kafkaTemplate.send(topic,employee.get(i));
         return  "Published successfully";
 
-        
+    }
+
+    @KafkaListener(topics = "kafka",groupId = "group_id")
+    public void consume(String message){
+        System.out.println("Consumed message "+message);
     }
 
     @Override
